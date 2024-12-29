@@ -17,7 +17,7 @@ public class TaskContext(DbContextOptions<TaskContext> options) : DbContext(opti
             new 
             {
                 Id = Guid.NewGuid(),
-                Name = "Dummy 1",
+                Name = "Test task",
                 Description = "This is a dummy task",
                 IsCompleted = false,
                 CreatedAt = DateTime.Now,

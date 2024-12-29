@@ -18,7 +18,10 @@ namespace TaskManager.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
-                    IsCompleted = table.Column<bool>(type: "INTEGER", nullable: false)
+                    IsCompleted = table.Column<bool>(type: "INTEGER", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    DueDate = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,8 +30,8 @@ namespace TaskManager.Migrations
 
             migrationBuilder.InsertData(
                 table: "TaskItems",
-                columns: new[] { "Id", "Description", "IsCompleted", "Name" },
-                values: new object[] { new Guid("5f86999d-b7a8-4983-a68a-b0317d547854"), "This is a dummy task", false, "Dummy 1" });
+                columns: new[] { "Id", "CreatedAt", "Description", "DueDate", "IsCompleted", "Name", "UpdatedAt" },
+                values: new object[] { new Guid("df8a9bd9-10b2-429f-b41c-9b7873ba32d6"), new DateTime(2024, 12, 29, 17, 15, 28, 795, DateTimeKind.Local).AddTicks(2620), "This is a dummy task", new DateTime(2025, 1, 5, 17, 15, 28, 795, DateTimeKind.Local).AddTicks(2640), false, "Test task", null });
         }
 
         /// <inheritdoc />

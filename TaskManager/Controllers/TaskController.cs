@@ -38,7 +38,6 @@ public class TasksController(TaskContext context) : ControllerBase
     {
         var task = new TaskItemDto
         {
-            Id = Guid.NewGuid(),
             Name = requestTaskItem.Name,
             Description = requestTaskItem.Description,
             IsCompleted = requestTaskItem.IsCompleted,
