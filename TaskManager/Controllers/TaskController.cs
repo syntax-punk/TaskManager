@@ -11,7 +11,7 @@ public class TasksController(TaskContext context) : ControllerBase
 {
     private readonly TaskContext _context = context;
     
-    [HttpGet]
+    [HttpGet("all")]
     public async Task<IActionResult> GetTasks()
     {
         var tasks = await _context.TaskItems.ToListAsync();
@@ -38,6 +38,7 @@ public class TasksController(TaskContext context) : ControllerBase
     {
         var task = new TaskItemDto
         {
+            Id = Guid.NewGuid(),
             Name = requestTaskItem.Name,
             Description = requestTaskItem.Description,
             IsCompleted = requestTaskItem.IsCompleted,
@@ -56,16 +57,16 @@ public class TasksController(TaskContext context) : ControllerBase
     }
     
     [HttpPut("{id:guid}")]
-    public async Task<IActionResult> UpdateTask(Guid id, [FromBody]RequestTaskItem requestTaskItem)
+    public async Task<IActionResult> UpdateTask(Guid id, [FromBody]UpdateTaskItem updateTaskItem)
     {
         var task = await _context.TaskItems.FindAsync(id);
 
         if (task == null)
-            return NotFound();
+            return NotFound("Sorry, we couldn't find the task you were looking for");
         
-        task.Name = requestTaskItem.Name;
-        task.Description = requestTaskItem.Description;
-        task.IsCompleted = requestTaskItem.IsCompleted;
+        task.Name = updateTaskItem.Name;
+        task.Description = updateTaskItem.Description;
+        task.IsCompleted = updateTaskItem.IsCompleted;
 
         var result = await _context.SaveChangesAsync() > 0;
         
