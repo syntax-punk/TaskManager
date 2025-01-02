@@ -1,10 +1,12 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using TaskManager.Models;
 
 namespace TaskManager.Db;
 
-public class TaskContext(DbContextOptions<TaskContext> options) : DbContext(options)
+public class TaskContext(DbContextOptions<TaskContext> options) : IdentityDbContext<IdentityUser>(options)
 {
     public DbSet<TaskItemDto> TaskItems { get; set; }
 
