@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TaskManager.Db;
+using TaskManager.Data;
 using TaskManager.Models;
 
 namespace TaskManager.Controllers;
